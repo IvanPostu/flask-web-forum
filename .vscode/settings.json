@@ -1,0 +1,107 @@
+{
+  "python.autoComplete.extraPaths": [
+     "./web-application"
+    //  "${workspaceRoot}/.env/lib/python3.7/site-packages"
+  ],
+  "python.envFile": "${workspaceRoot}/venv",
+  "python.pythonPath": "${workspaceRoot}/venv/bin/python3",
+  "python.linting.flake8Enabled": true,
+  "python.linting.pylintEnabled": false,
+  "python.linting.mypyEnabled": true,
+  "python.linting.flake8Args": ["--ignore=E111,E713", "--max-line-length=100"],
+  "python.linting.pylintUseMinimalCheckers": true,
+  "[python]": {
+      "editor.tabSize": 4,
+      "editor.insertSpaces": true,
+      "editor.formatOnSave": true
+  },
+  "python.testing.pytestEnabled": false,
+  "python.testing.unittestEnabled": false,
+//   "python.testing.pytestPath": "pytest",
+
+  "eslint.workingDirectories": ["./frontend", "."],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "path-intellisense.mappings": {
+    "@": "${workspaceRoot}/src"
+  },
+  "files.exclude": {
+    "**/mysql_data/*/**": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true,
+    "**/__pycache__": true,
+    "**/.mypy_cache": true,
+    "**/.pytest_cache": true,
+  },
+  "files.watcherExclude": {
+    "**/mysql_data/*/**": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true,
+    "**/build/*/**": true
+  },
+  "editor.rulers": [100],
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wrappingIndent": "same",
+  "editor.wordWrapColumn": 100,
+  "editor.formatOnSave": false,
+  "breadcrumbs.enabled": true,
+  "terminal.integrated.fontFamily": "Fira Code Medium",
+  "terminal.integrated.fontSize": 10,  
+  "debug.console.fontFamily": "Fira Code Medium",
+  "debug.console.fontSize": 10,
+  "editor.codeLens": false,
+  "editor.cursorBlinking": "smooth",
+  "editor.cursorStyle": "line",
+  "editor.fontSize": 14,
+  "editor.fontFamily": "Fira Code Medium",
+  "editor.fontLigatures": true,
+  "editor.formatOnPaste": false,
+  "editor.formatOnType": false,
+  "editor.letterSpacing": 0.2,
+  "editor.lineHeight": 16,
+  "editor.minimap.enabled": false,
+  "editor.tabSize": 4,
+  "editor.detectIndentation": false,
+  "editor.insertSpaces": true,
+  "search.showLineNumbers": true,
+  "workbench.colorCustomizations": {
+    "editorWarning.foreground": "#ff9100",
+    "editorError.foreground": "#ff0000",
+    "editorError.border": "#b80000"
+  },
+  "zenMode.centerLayout": false,
+  "zenMode.hideLineNumbers": false,
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "comment",
+        "settings": {
+          "foreground": "#416863"
+        }
+      },
+      {
+        "scope": "string.quoted.single",
+        "settings": {
+          "foreground": "#3fad8e"
+        }
+      },
+      {
+        "scope": "string.quoted.double",
+        "settings": {
+          "foreground": "#229977"
+        }
+      },
+      {
+        "scope": "string.quoted",
+        "settings": {
+          "foreground": "#5ab399"
+        }
+      }
+    ]
+},
+
+
+}

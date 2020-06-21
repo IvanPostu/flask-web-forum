@@ -1,0 +1,24 @@
+version: '3'
+
+services: 
+  rdms:
+    container_name: database.dev
+    image: mysql:8.0 
+    restart: always
+    volumes: 
+      - ./mysql_data:/var/lib/mysql 
+    environment: 
+      MYSQL_ROOT_PASSWORD: qwerty1
+      MYSQL_DATABASE: app_database
+      MYSQL_USER: jonny
+      MYSQL_PASSWORD: h3lloW0rld
+    ports:
+      - 3306:3306
+    
+ 
+  adminer:
+    image: adminer 
+    restart: always
+    ports: 
+      - 8080:8080 
+
