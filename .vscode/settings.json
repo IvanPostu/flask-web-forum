@@ -54,6 +54,22 @@
     "**/node_modules/*/**": true,
     "**/build/*/**": true
   },
+  "todohighlight.isEnable": true,
+  "todohighlight.isCaseSensitive": true,
+  "todohighlight.keywords": [
+    {
+      "text": "{%",
+      "color": "yellow",
+      "backgroundColor": "none", 
+      "overviewRulerColor": "none",
+    },
+    {
+        "text": "%}",
+        "color": "yellow",
+        "backgroundColor": "none", 
+        "overviewRulerColor": "none",
+      },
+  ],
   "editor.rulers": [100],
   "editor.wordWrap": "wordWrapColumn",
   "editor.wrappingIndent": "same",
