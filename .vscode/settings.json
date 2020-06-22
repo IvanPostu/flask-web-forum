@@ -15,6 +15,18 @@
       "editor.insertSpaces": true,
       "editor.formatOnSave": true
   },
+  "[html]": {
+      "editor.suggest.insertMode": "replace",
+      "editor.tabSize": 2,
+  },
+  "[js]": {
+    "editor.suggest.insertMode": "replace",
+    "editor.tabSize": 2,
+  },
+  "[json]": {
+    "editor.suggest.insertMode": "replace",
+    "editor.tabSize": 2,
+  },
   "python.testing.pytestEnabled": false,
   "python.testing.unittestEnabled": false,
 //   "python.testing.pytestPath": "pytest",
@@ -70,7 +82,11 @@
   "workbench.colorCustomizations": {
     "editorWarning.foreground": "#ff9100",
     "editorError.foreground": "#ff0000",
-    "editorError.border": "#b80000"
+    "editorError.border": "#b80000",
+    
+    "statusBar.background" : "#110f1b",
+    "statusBar.noFolderBackground" : "#212121",
+    "statusBar.debuggingBackground": "#263238"
   },
   "zenMode.centerLayout": false,
   "zenMode.hideLineNumbers": false,

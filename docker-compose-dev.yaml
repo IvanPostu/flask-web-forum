@@ -17,6 +17,7 @@ services:
     
  
   adminer:
+    container_name: adminer.dev
     image: adminer 
     restart: always
     ports: 
