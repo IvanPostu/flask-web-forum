@@ -84,7 +84,7 @@
     "editorError.foreground": "#ff0000",
     "editorError.border": "#b80000",
     
-    "statusBar.background" : "#110f1b",
+    "statusBar.background" : "#4d4b57",
     "statusBar.noFolderBackground" : "#212121",
     "statusBar.debuggingBackground": "#263238"
   },
