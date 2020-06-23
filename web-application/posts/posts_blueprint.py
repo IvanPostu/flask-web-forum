@@ -1,4 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
+from flask_sqlalchemy import BaseQuery
+
+from typing import AnyStr
 
 from models import Post, Tag
 from .forms import PostForm
@@ -31,14 +34,24 @@ def create_post():
 def index():
 
     q = request.args.get('q')
+    page: AnyStr = request.args.get('page')
+
+    posts: BaseQuery
+
+    if page and page.isdigit():
+        page_number: int = int(page)
+    else:
+        page_number: int = 1
 
     if q:
         posts = Post.query.filter(Post.title.contains(
-            q) | Post.body.contains(q)).all()
+            q) | Post.body.contains(q))
     else:
         posts = Post.query.order_by(Post.created.desc())
 
-    return render_template('posts/index.html', posts=posts)
+    pages = posts.paginate(page=page_number, per_page=5)
+
+    return render_template('posts/index.html', pages=pages)
 
 
 @posts.route('/<slug>')
@@ -51,5 +64,6 @@ def post_detail(slug):
 @posts.route('/tag/<slug>')
 def tag_detail(slug):
     tag = Tag.query.filter(Tag.slug == slug).first()
-    posts = tag.posts.all()
+    posts_query: BaseQuery = tag.posts
+    posts = posts_query.all()
     return render_template('posts/tag_detail.html', tag=tag, posts=posts)
