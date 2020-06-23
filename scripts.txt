@@ -1,0 +1,5 @@
+bash ./main.sh type="build-static-css-and-js-libs" //download js and css lib files
+
+cd ./web-application && python manage.py db init //init db migrations
+cd ./web-application && python manage.py db migrate //create migration
+cd ./web-application && python manage.py db upgrade // apply migration

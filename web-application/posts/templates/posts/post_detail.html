@@ -8,6 +8,15 @@
 <div class="container">
   <h1>{{post.title}}</h1>
   <p>{{post.body}}</p>
+  <div class="tags">
+    {% for tag in tags %}
+    <a href="{{url_for('posts.tag_detail', slug=tag.slug)}}">
+      <span class="label label-primary">
+        {{tag.name}}
+      </span>
+    </a>
+    {% endfor %}
+  </div>
 </div>
 
 {% endblock %}
