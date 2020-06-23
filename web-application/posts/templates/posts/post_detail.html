@@ -10,11 +10,9 @@
   <p>{{post.body}}</p>
   <div class="tags">
     {% for tag in tags %}
-    <a href="{{url_for('posts.tag_detail', slug=tag.slug)}}">
-      <span class="label label-primary">
+      <a href="{{url_for('posts.tag_detail', slug=tag.slug)}}" class="btn btn-primary" role="button">
         {{tag.name}}
-      </span>
-    </a>
+      </a>
     {% endfor %}
   </div>
 </div>
