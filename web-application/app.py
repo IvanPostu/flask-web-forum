@@ -1,7 +1,13 @@
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
-from posts.posts_blueprint import posts
+import os
+
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
+    'SQLALCHEMY_DATABASE_URI')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.environ.get(
+    'SQLALCHEMY_TRACK_MODIFICATIONS')
 
-app.register_blueprint(posts, url_prefix='/blog')
+db: SQLAlchemy = SQLAlchemy(app)
