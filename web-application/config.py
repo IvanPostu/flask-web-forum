@@ -5,3 +5,5 @@ class Configuration(object):
     SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://jonny:h3lloW0rld@localhost/app_database'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = 'abcsdkfpskjgp24g'
+    SECURITY_PASSWORD_SALT = 'i2u89u2498u'
+    SECURITY_PASSWORD_HASH = 'sha512_crypt'

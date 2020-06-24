@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_sqlalchemy import BaseQuery
+from flask_security import login_required
 
 from typing import AnyStr
 
@@ -11,6 +12,7 @@ posts = Blueprint('posts', __name__, template_folder='templates')
 
 
 @posts.route('/create', methods=['GET', 'POST'])
+@login_required
 def create_post():
 
     if request.method == 'POST':
@@ -31,6 +33,7 @@ def create_post():
 
 
 @posts.route('/<slug>/edit/', methods=['POST', 'GET'])
+@login_required
 def edit_post(slug):
     post_query: BaseQuery = Post.query
     post = post_query.filter(Post.slug == slug).first()

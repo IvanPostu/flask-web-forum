@@ -31,6 +31,11 @@
         <li class="nav-item">
           <a class="nav-link" href="{{url_for('posts.create_post')}}">Create post</a>
         </li>
+        {% if current_user.has_role('admin') %}
+          <li class="nav-item">
+            <a class="nav-link" href="/admin">Admin</a>
+          </li>
+        {% endif %}
       </ul>
       <form class="form-inline" method="GET">
         <input name="q" value="{{request.args.get('q', '')}}" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
