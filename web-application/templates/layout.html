@@ -6,8 +6,9 @@
   
   {% if config['DEBUG'] %}
     <link rel="stylesheet" href="/static/npm_libs/bootstrap.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='npm_libs/bootstrap.css') }}">
   {% else %}
-    <link rel="stylesheet" href="/static/npm_libs/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='npm_libs/bootstrap.min.css') }}">
   {% endif %}
 
   <title>{% block title %}{% endblock %} | Flask app</title>
