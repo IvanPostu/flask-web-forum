@@ -68,6 +68,8 @@ roles_users = db.Table('roles_users',
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(128), unique=True)
+    firstname = db.Column(db.String(128))
+    lastname = db.Column(db.String(128))
     password = db.Column(db.String(128))
     active = db.Column(db.Boolean())
     confirmed_at = db.Column(db.DateTime, default=datetime.now())
@@ -80,6 +82,14 @@ class User(db.Model, UserMixin):
 
 
 class Role(db.Model, RoleMixin):
+    __tablename__ = 'role'
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), unique=True)
     description = db.Column(db.String(256))
+
+    @staticmethod
+    def app_roles():
+        return [
+            Role(name='user', description='Simple user.'),
+            Role(name='admin', description='Administrator, can use CRUD operations.')]

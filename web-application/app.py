@@ -1,6 +1,6 @@
 
 from flask_login import LoginManager
-from flask_security import current_user, LoginForm
+from flask_security import current_user
 from flask_admin.contrib.sqla import ModelView
 from flask_admin import Admin, AdminIndexView
 from flask_script import Manager
@@ -23,9 +23,10 @@ app.config.from_object(Configuration)
 
 db: SQLAlchemy = SQLAlchemy(app)
 
-migrate = Migrate(app, db)
-manager = Manager(app)
+migrate: Migrate = Migrate(app, db)
+manager: Manager = Manager(app)
 manager.add_command('db', MigrateCommand)
+
 
 from models import Post, Tag, User, Role  # noqa: E402 F401
 
@@ -60,17 +61,6 @@ class TagAdminView(AdminMixin, BaseModelView):
     form_columns = ['name', 'posts']
 
 
-class CustomLoginForm(LoginForm):
-
-    def validate(self):
-        # Put code here if you want to do stuff before login attempt
-        response = super(CustomLoginForm, self).validate()
-
-        # Put code here if you want to do stuff after login attempt
-
-        return response
-
-
 admin = Admin(app, 'FlaskApp', url='/', index_view=HomeAdminView(name='Home'))
 admin.add_view(PostAdminView(Post, db.session))
 admin.add_view(TagAdminView(Tag, db.session))
@@ -82,16 +72,3 @@ login_manager = LoginManager(app)
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
-
-
-# user_datastore: SQLAlchemyUserDatastore = SQLAlchemyUserDatastore(
-#     db, User, Role)
-# security = Security(app, user_datastore, login_form=CustomLoginForm)
-
-
-# role = Role.query.first()
-# user = User.query.first()
-
-# role_is_added: bool = user_datastore.add_role_to_user(user, role)
-
-# print(role_is_added)

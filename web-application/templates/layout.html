@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='npm_libs/bootstrap.min.css') }}">
   {% endif %}
 
+  <style>
+    body {
+      background-color: rgb(235, 240, 240);
+    }
+  </style>
+
   <title>{% block title %}{% endblock %} | Flask app</title>
   
 </head>
@@ -68,7 +74,9 @@
     </div>
   </nav>
 
-  {% block content %}{% endblock %}
+  <div style="min-height: 100vh;">
+    {% block content %}{% endblock %}
+  </div>
 
   {% if config['DEBUG'] %}
     <script src="/static/npm_libs/jquery.js"></script>
@@ -77,6 +85,50 @@
     <script src="/static/npm_libs/jquery.min.js"></script>
     <script src="/static/npm_libs/bootstrap.bundle.min.js"></script>
   {% endif %}
+
+  <footer class="page-footer font-small bg-dark text-light pt-4 mt-4">
+
+    <div class="container-fluid text-center text-md-left">
+  
+      <div class="row">
+  
+        <div class="col-md-6 mt-md-0 mt-3">
+  
+          <h5 class="text-uppercase">Footer Content</h5>
+          <p>Text content.</p>
+  
+        </div>
+  
+        <hr class="clearfix w-100 d-md-none pb-3">
+  
+        <div class="col-md-3 mb-md-0 mb-3">
+          <h5 class="text-uppercase">Links</h5>
+          <ul class="list-unstyled">
+            <li>
+              <a href="#!">Link 1</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-3 mb-md-0 mb-3">
+          <h5 class="text-uppercase">Links</h5>
+  
+          <ul class="list-unstyled">
+            <li>
+              <a href="#!">Link 1</a>
+            </li>
+          </ul>
+        </div>
+  
+      </div>
+  
+    </div>
+  
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+      <a href="https://github.com/IvanPostu"> Github: IvanPostu </a>
+    </div>
+  
+  </footer>
 
   {% block body_tail %}{% endblock %}
 

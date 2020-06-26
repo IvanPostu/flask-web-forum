@@ -143,3 +143,4 @@ node_modules
 web-application/static/npm_libs
 static_libs_builder/collected_static_libs
 package-lock.json
+server_files
