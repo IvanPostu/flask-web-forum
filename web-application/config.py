@@ -1,6 +1,10 @@
 import os
-
+from dotenv import load_dotenv
 # Load all from .env file.
+
+APP_ROOT = os.path.join(os.path.dirname(__file__), '..')
+dotenv_path = os.path.join(APP_ROOT, '.env')
+load_dotenv(dotenv_path)
 
 
 class Configuration(object):
@@ -11,5 +15,5 @@ class Configuration(object):
     UPLOAD_FOLDER = os.getenv('UPLOAD_FOLDER')
 
     # On migrate uncomment and set lines below
-    SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://jonny:h3lloW0rld@localhost/app_database'
-    SQLALCHEMY_TRACK_MODIFICATIONS = '0'
+    # SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://jonny:h3lloW0rld@localhost/app_database'
+    # SQLALCHEMY_TRACK_MODIFICATIONS = '0'

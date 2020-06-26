@@ -7,15 +7,10 @@ from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, redirect, url_for, request
-from dotenv import load_dotenv
 
 
 import os
 from config import Configuration
-
-APP_ROOT = os.path.join(os.path.dirname(__file__), '..')
-dotenv_path = os.path.join(APP_ROOT, '.env')
-load_dotenv(dotenv_path)
 
 
 app = Flask(__name__)
