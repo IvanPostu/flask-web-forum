@@ -8,8 +8,6 @@ from flask_migrate import Migrate, MigrateCommand
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, redirect, url_for, request
 
-
-import os
 from config import Configuration
 
 
