@@ -1,14 +1,14 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-  Edit post
+  Create new post
 {% endblock %}
 
 {% block content %}
 <div class="container">
   <div class="col-md-6">
-    <h1>Edit post</h1>
-    <form action="{{url_for('posts.edit_post', slug=post.slug)}}" method="POST">
+    <h1>New post</h1>
+    <form action="{{url_for('forum.create_post')}}" method="POST">
       {% for field in form %}
         <div class="form-group">
           {{ field.label(class='control-label') }}
@@ -16,7 +16,7 @@
         </div>
       {% endfor %}
 
-      <button type="submit" class="btn btn-info">Edit</button>
+      <button type="submit" class="btn btn-info">Create</button>
 
     </form>
   </div>

@@ -8,10 +8,10 @@ from models import Post, Tag
 from .forms import PostForm
 from app import db
 
-posts = Blueprint('posts', __name__, template_folder='templates')
+forum = Blueprint('forum', __name__, template_folder='templates')
 
 
-@posts.route('/create', methods=['GET', 'POST'])
+@forum.route('/create', methods=['GET', 'POST'])
 @login_required
 def create_post():
 
@@ -26,13 +26,13 @@ def create_post():
         except Exception:
             print('Something wrong!')
 
-        return redirect(url_for('posts.index'))
+        return redirect(url_for('forum.index'))
 
     form = PostForm()
-    return render_template('posts/create_post.html', form=form)
+    return render_template('forum/create_post.html', form=form)
 
 
-@posts.route('/<slug>/edit/', methods=['POST', 'GET'])
+@forum.route('/<slug>/edit/', methods=['POST', 'GET'])
 @login_required
 def edit_post(slug):
     post_query: BaseQuery = Post.query
@@ -43,13 +43,13 @@ def edit_post(slug):
         form.populate_obj(post)
         db.session.commit()
 
-        return redirect(url_for('posts.post_detail', slug=post.slug))
+        return redirect(url_for('forum.post_detail', slug=post.slug))
 
     form = PostForm(obj=post)
-    return render_template('posts/edit_post.html', post=post, form=form)
+    return render_template('forum/edit_post.html', post=post, form=form)
 
 
-@posts.route('/')
+@forum.route('/')
 def index():
 
     q = request.args.get('q')
@@ -70,19 +70,19 @@ def index():
 
     pages = posts.paginate(page=page_number, per_page=5)
 
-    return render_template('posts/index.html', pages=pages)
+    return render_template('forum/index.html', pages=pages)
 
 
-@posts.route('/<slug>')
+@forum.route('/<slug>')
 def post_detail(slug):
     post = Post.query.filter(Post.slug == slug).first_or_404()
     tags = post.tags
-    return render_template('posts/post_detail.html', post=post, tags=tags)
+    return render_template('forum/post_detail.html', post=post, tags=tags)
 
 
-@posts.route('/tag/<slug>')
+@forum.route('/tag/<slug>')
 def tag_detail(slug):
     tag = Tag.query.filter(Tag.slug == slug).first_or_404()
     posts_query: BaseQuery = tag.posts
     posts = posts_query.all()
-    return render_template('posts/tag_detail.html', tag=tag, posts=posts)
+    return render_template('forum/tag_detail.html', tag=tag, posts=posts)

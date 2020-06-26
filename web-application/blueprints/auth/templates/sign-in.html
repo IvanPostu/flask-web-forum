@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  Sign in
+{% endblock %}
+
+{% block content %}
+
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+      <ul class="flashes">
+          {% for message in messages %}
+              <li>{{message}}</li>
+          {% endfor %}
+      </ul>
+  {% endif %}
+  {% endwith %}
+
+  <div class="container">
+    <div class="mt-3 row justify-content-md-center">
+      <div class="col-md-6">
+
+        <h1 class="text-center mt-3">Sign in page</h1>
+
+        <form method="POST" >
+
+          <div class="form-group">
+            <label for="emailForm1394">Email: </label>
+            <input autocomplete="off" name="email" type="email" class="form-control" 
+              id="emailForm1394" placeholder="example@email.ru">
+          </div>
+
+          <div class="form-group">
+            <label for="passwordForm1394">Password: </label>
+            <input name="password" type="password" class="form-control" 
+              id="passwordForm1394" >
+          </div>
+
+          <button class="btn btn-primary" type="submit">Sign-in</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+{% endblock %}

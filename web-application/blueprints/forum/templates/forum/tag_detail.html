@@ -10,7 +10,7 @@
 
   {% for post in posts %}
     <span class="post">
-      <a href="{{url_for('posts.post_detail', slug=post.slug)}}">{{post.title}}</a>
+      <a href="{{url_for('forum.post_detail', slug=post.slug)}}">{{post.title}}</a>
     </span>
   {% endfor %}
 

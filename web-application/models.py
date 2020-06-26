@@ -49,6 +49,10 @@ class Tag(db.Model):
         super(Tag, self).__init__(*args, **kwargs)
         self.slug = slugify(self.name)
 
+    def generate_slug(self):
+        if self.name:
+            self.slug = slugify(self.name)
+
     def __repr__(self):
         return '{}'.format(self.name)
 
@@ -66,8 +70,13 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(128), unique=True)
     password = db.Column(db.String(128))
     active = db.Column(db.Boolean())
+    confirmed_at = db.Column(db.DateTime, default=datetime.now())
+    face_image_location = db.Column(db.String(256))
     roles = db.relationship('Role', secondary=roles_users,
                             backref=db.backref('users', lazy='dynamic'))
+
+    def __repr__(self):
+        return f'<User id:{self.id} email:{self.email} />'
 
 
 class Role(db.Model, RoleMixin):

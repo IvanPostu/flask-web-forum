@@ -3,8 +3,10 @@ import routes
 
 __all__ = ['routes']
 
-from posts.posts_blueprint import posts
-app.register_blueprint(posts, url_prefix='/blog')
+from blueprints.forum.forum_blueprint import forum
+from blueprints.home.home_blueprint import home
+from blueprints.auth.auth_blueprint import auth
 
-if __name__ == '__main__':
-    app.run()
+app.register_blueprint(forum, url_prefix='/forum')
+app.register_blueprint(home, url_prefix='/home')
+app.register_blueprint(auth, url_prefix='/auth')

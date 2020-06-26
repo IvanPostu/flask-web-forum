@@ -10,7 +10,7 @@
   <p>{{post.body}}</p>
   <div class="tags">
     {% for tag in tags %}
-      <a href="{{url_for('posts.tag_detail', slug=tag.slug)}}" class="btn btn-primary" role="button">
+      <a href="{{url_for('forum.tag_detail', slug=tag.slug)}}" class="btn btn-primary" role="button">
         {{tag.name}}
       </a>
     {% endfor %}
