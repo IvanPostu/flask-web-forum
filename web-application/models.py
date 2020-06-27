@@ -89,7 +89,19 @@ class Role(db.Model, RoleMixin):
     description = db.Column(db.String(256))
 
     @staticmethod
+    def admin():
+        return Role(name='admin', description='Administrator, can use CRUD operations.')
+
+    @staticmethod
+    def user():
+        return Role(name='user', description='Simple user.')
+
+    @staticmethod
     def app_roles():
+        '''
+        When I add a new role, do not forget to add it to the array.
+        '''
         return [
-            Role(name='user', description='Simple user.'),
-            Role(name='admin', description='Administrator, can use CRUD operations.')]
+            Role.user(),
+            Role.admin()
+        ]

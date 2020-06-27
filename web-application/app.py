@@ -6,7 +6,7 @@ from flask_admin import Admin, AdminIndexView
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, redirect, url_for, request
+from flask import Flask, redirect, url_for, request, flash
 
 from config import Configuration
 
@@ -26,10 +26,11 @@ from models import Post, Tag, User, Role  # noqa: E402 F401
 
 class AdminMixin:
     def is_accessible(self):
-        return current_user.has_role('admin')
+        return current_user.has_role(Role.admin().name)
 
     def inaccessible_callback(self, name, **kwargs):
-        return redirect(url_for('security.login', next=request.url))
+        flash('This function is available only to the site administrator.')
+        return redirect(url_for('auth.sign_in', next=request.url))
 
 
 class BaseModelView(ModelView):

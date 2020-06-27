@@ -7,7 +7,7 @@ import os
 import uuid
 
 from app import db, app
-from models import User
+from models import User, Role
 
 auth = Blueprint('auth', __name__, template_folder='templates')
 
@@ -37,9 +37,10 @@ def sign_up():
             os_path_toFile = os.path.join(
                 app.config['UPLOAD_FOLDER'], face_img_filename)
             face_imagefile.save(os_path_toFile)
+            usr_role = Role.query.filter_by(name=Role.user().name).first()
             new_user = User(email=email, password=generate_password_hash(
                 password), active=True, lastname=lastname, firstname=firstname,
-                face_image_location=os_path_toFile)
+                face_image_location=os_path_toFile, roles=[usr_role])
             db.session.add(new_user)
             db.session.commit()
 
