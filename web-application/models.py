@@ -80,6 +80,9 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f'<User id:{self.id} email:{self.email} />'
 
+    def fullname(self):
+        return f'{self.firstname} {self.lastname}'
+
 
 class Role(db.Model, RoleMixin):
     __tablename__ = 'role'
