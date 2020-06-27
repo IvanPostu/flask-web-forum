@@ -47,6 +47,7 @@ def sign_up():
             db.session.add(new_user)
             db.session.commit()
 
+            flash('User has been registrated !!!', 'success')
             return redirect(url_for('auth.sign_in'))
 
     return render_template('auth/sign-up.html')
