@@ -9,7 +9,7 @@
             "type": "python",
             "request": "launch",
             "module": "flask",
-            "console": "internalConsole",
+            "console": "integratedTerminal",
             "args": [
                 "run",
                 "--no-debugger"

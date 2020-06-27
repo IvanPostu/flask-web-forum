@@ -5,11 +5,13 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 import os
 import uuid
+import base64
 
 from app import db, app
 from models import User, Role
 
-auth = Blueprint('auth', __name__, template_folder='templates')
+auth = Blueprint('auth', __name__, template_folder='templates',
+                 static_folder='static')
 
 
 @auth.route('/sign-up', methods=['POST', 'GET'])
@@ -19,28 +21,28 @@ def sign_up():
         email: str = request.form.get('email')
         password: str = request.form.get('password')
         password_repeat: str = request.form.get('password2')
-        face_imagefile = request.files['face_image']
         firstname: str = request.form.get('firstname')
         lastname: str = request.form.get('lastname')
+        imgdata: str = request.form.get('imgdata')
 
         if not (email or password or password_repeat or firstname or lastname):
             flash('Please fill all fields!')
         elif password != password_repeat:
             flash('Passwords are not equal!')
-        elif 'face_image' not in request.files:
-            flash('No face image file part.')
-        elif face_imagefile.filename == '':
-            flash('No selected file.')
+        elif not imgdata:
+            flash('Take a photo of the face.')
         else:
-            face_img_filename: str = str(
-                uuid.uuid4()) + '_' + face_imagefile.filename
-            os_path_toFile = os.path.join(
-                app.config['UPLOAD_FOLDER'], face_img_filename)
-            face_imagefile.save(os_path_toFile)
+            face_img_filename: str = os.path.join(
+                app.config['UPLOAD_FOLDER'], str(uuid.uuid4())) + '.jpeg'
+
+            imgdata = imgdata.replace('data:image/jpeg;base64,', '')
+            with open(face_img_filename, 'wb') as fh:
+                fh.write(base64.decodebytes(imgdata.encode()))
+
             usr_role = Role.query.filter_by(name=Role.user().name).first()
             new_user = User(email=email, password=generate_password_hash(
                 password), active=True, lastname=lastname, firstname=firstname,
-                face_image_location=os_path_toFile, roles=[usr_role])
+                face_image_location=face_img_filename, roles=[usr_role])
             db.session.add(new_user)
             db.session.commit()
 

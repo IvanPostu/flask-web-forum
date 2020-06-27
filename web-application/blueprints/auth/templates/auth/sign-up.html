@@ -4,6 +4,8 @@
   Sign up
 {% endblock %}
 
+
+
 {% block content %}
 
   <div class="container">
@@ -54,10 +56,22 @@
               id="passwordRepeatForm1394" >
           </div>
 
-          <div class="custom-file mb-3">
-            <input name="face_image" type="file" class="custom-file-input" id="face-image_file31" >
-            <label class="custom-file-label" for="face-image_file31">Enter your photo</label>
+          <input type="hidden" name="imgdata" id="imgdata"> 
+
+          <!-- face screen  -->
+          <div id="face-screenshooter">
+            <div class="video-wrap">
+              <video autoplay id="video"></video>
+            </div>
+  
+            <div class="controller">
+              <button id="snap">Capture</button>
+            </div>
+  
+            <h3 style="color: red;" id="errormsg"></h3>
           </div>
+          
+          <!-- face screen  -->
 
           <button class="btn btn-primary" type="submit">Sign-up</button>
         </form>
@@ -65,4 +79,9 @@
       </div>
     </div>
   </div>
+{% endblock %}
+
+
+{% block body_tail %}
+  <script src="{{ url_for('auth.static', filename='sign-up.js') }}"></script>
 {% endblock %}
